@@ -1,7 +1,15 @@
-(include "bindings.scm")
+(declare (unit discount))
 
 (define (sys-open-file filename #!key (mode "r+"))
   (let ([result (fopen filename mode)])
+    (if (equal? result #f)
+	(begin
+	  (perror "")
+	  result)
+	result)))
+
+(define (sys-close-file filename)
+  (let ([result (fclose filename)])
     (if (equal? result #f)
 	(begin
 	  (perror "")
@@ -17,17 +25,18 @@
 (define (parse-markdown-file input-file)
   (let ([file (sys-open-file input-file mode: "r")])
     (mkd_in file 0)))
+
 ;;; Reads the input string and returns a markdown-document
 (define (parse-markdown input)
   (mkd_string input (string-length input) 0))
 
 ;;; Generates HTML to file
 (define (generate-html document filename)
-  (let* ([file (sys-open-file filename mode: "a")])
-    (print document)
-    (print file)
+  (let* ([file (sys-open-file filename mode: "w")])
     (if file
-	(markdown document file 0))))
+	(begin
+	  (markdown document file 0)
+	  (sys-close-file file)))))
 
 ;; (generate-html
 ;;  (parse-markdown "<<TEST
@@ -40,5 +49,3 @@
 ;; TEST"
 ;; 		 ) "test.html")
 
-(generate-html
- (parse-markdown-file "test.markdown") "test.html")

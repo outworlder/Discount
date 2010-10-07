@@ -1,7 +1,10 @@
+(declare (unit bindings))
+
 (use bind)
 
 ;;; OS-level calls
 (bind "FILE* fopen(const char* filename, const char* mode)")
+(bind "int fclose(FILE *fp)")
 (bind "void perror(char* msg)")
 
 (bind "typedef void MMIOT;")
