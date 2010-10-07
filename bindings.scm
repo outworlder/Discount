@@ -1,7 +1,10 @@
 (use bind)
 
-(bind "typedef void MMIOT;")
+;;; OS-level calls
+(bind "FILE* fopen(const char* filename, const char* mode)")
+(bind "void perror(char* msg)")
 
+(bind "typedef void MMIOT;")
 ;; Input functions
 
 ;; Reads a markdown input file and returns a MMIOT containing the preprocessed document. (which is then fed to markdown() for final formatting.)

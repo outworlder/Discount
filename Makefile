@@ -2,7 +2,7 @@
 CSC=csc
 CSI=csi
 OBJECTS=bindings.o
-FLAGS=
+FLAGS=-v
 MAIN=discount.scm
 TEST=test.scm
 COMMA=,
@@ -18,11 +18,11 @@ test:
 	$(CSI) -s $(TEST)
 
 discount: $(OBJECTS)
-	$(CSC) -c $(MAIN) $(patsubst %.o,-uses %, $(OBJECTS))
-	$(CSC) $(LIBRARIES) $^ $(MAIN:.scm=.o) -o $@
+	$(CSC) $(FLAGS) -c $(MAIN) $(patsubst %.o,-uses %, $(OBJECTS))
+	$(CSC) $(FLAGS) $(LIBRARIES) $^ $(MAIN:.scm=.o) -o $@
 
 %.o: %.scm
-	$(CSC) -unit $* -c $(FLAGS)$<
+	$(CSC) -unit $* -c $(FLAGS) $<
 
 clean:
 	rm -f *.o
