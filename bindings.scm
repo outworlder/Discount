@@ -44,8 +44,8 @@
 ;; Takes a document created by mkd_in() or mkd_string() and compiles it into a tree of block elements.
 ;; (bind "int mkd_compile(MMIOT * doc, int flags)")
 
-;; (define mkd-compile
-;;   (foreign-lambda int mkd_compile c-pointer int))
+(define discount-mkd-compile!
+  (foreign-lambda int mkd_compile c-pointer int))
 
 ;; (define (mkd_compile a b)
 ;;   #f)
@@ -55,6 +55,9 @@
 
 ;; ;; Returns (in 'text') a pointer to the compiled HTML document, and (in the return code) the size of that document
 ;; (bind "int mkd_document(MMIOT *doc, char **text)")
+
+(define discount-mkd-document
+  (foreign-lambda int mkd_document c-pointer (pointer c-string)))
 
 ;; ;; Allocates a buffer and populates it with any style blocks found in the document
 ;; (bind "int mkd_css(MMIOT *doc, char **out)")
