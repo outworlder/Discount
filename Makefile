@@ -2,7 +2,7 @@
 CSC=csc
 CSI=csi
 OBJECTS=bindings.o discount.o
-FLAGS=
+CFLAGS=
 TEST=test.o
 COMMA=,
 EMPTY=
@@ -21,7 +21,7 @@ test: $(OBJECTS) $(TEST)
 # 	$(CSC) $(FLAGS) $(LIBRARIES) $(OBJECTS) -o $@
 
 %.o: %.scm
-	$(CSC) -c $(FLAGS) $<
+	$(CSC) -c $<  -C "$(CFLAGS)"
 
 clean:
 	rm -f *.o
