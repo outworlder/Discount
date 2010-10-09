@@ -1,5 +1,3 @@
-(declare (unit bindings))
-
 (foreign-declare "#include \"mkdio.h\"")
 
 ;;; OS-level calls
@@ -78,4 +76,3 @@
 
 ;; ;; Releases the MMIOT allocated for the document
 ;; (bind "void mkd_cleanup(void *doc)")
-

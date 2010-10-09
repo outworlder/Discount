@@ -1,0 +1,6 @@
+(compile -s discount.scm -j discount -lmarkdown)
+(compile -c discount.scm -lmarkdown -unit discount)
+(compile -s discount.import.scm)
+
+(install-extension 'discount '("discount.so" "discount.o" "discount.import.so") '((version 0.1)
+									      (static "discount.o")))

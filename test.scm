@@ -1,11 +1,10 @@
-(declare (uses bindings)
-	 (uses discount))
-
 (use test)
 (use data-structures)
 (use ports)
 (use extras)
 (use utils)
+
+(use discount)
 
 (test-group "Markdown in-memory processing"
 	    (test "Should return a html string from a given markdown string"
