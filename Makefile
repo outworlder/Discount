@@ -1,8 +1,9 @@
 # Temporary Makefile for the Discount egg
 CSC=csc
 CSI=csi
-OBJECTS=bindings.o discount.o
+OBJECTS=discount.o
 CFLAGS=
+FLAGS=-setup-mode
 TEST=test.o
 COMMA=,
 EMPTY=
@@ -13,15 +14,15 @@ LIBRARIES=-L/usr/local/lib -lmarkdown
 
 all: test
 
-test: $(OBJECTS) $(TEST)
-	$(CSC) $(FLAGS) $(LIBRARIES) $(OBJECTS) $(TEST) -o $@
+test: $(TEST)
+	$(CSC) $(FLAGS) $(LIBRARIES) $(TEST) -o $@
 	./test
 
 # discount: $(OBJECTS)
 # 	$(CSC) $(FLAGS) $(LIBRARIES) $(OBJECTS) -o $@
 
 %.o: %.scm
-	$(CSC) -c $<  -C "$(CFLAGS)"
+	$(CSC) $(FLAGS) -c $<  -C "$(CFLAGS)"
 
 clean:
 	rm -f *.o
