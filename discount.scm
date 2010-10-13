@@ -1,4 +1,6 @@
-(declare (unit discount))
+(module discount
+	'markdown
+	(import scheme chicken foreign)
 
 (define (markdown-generate-in-memory doc)
   (print "\n omsdgsd fsdf --------------------------------------------------" doc)
@@ -12,4 +14,3 @@
     (discount-mkd-compile! document flags)
     (markdown-generate-in-memory document)))
 	 
-    
