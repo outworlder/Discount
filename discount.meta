@@ -1,4 +1,5 @@
 ((author "Stephen Pedrosa Eilert")
  (synopsis "Bindings for the Discount Markdown parser")
  (license "BSD")
+ (category parsing)
  (version "0.1"))
